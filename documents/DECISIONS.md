@@ -3,11 +3,11 @@
 
 # Date 07/10/2026
 
-OBSTICLE DESCRIPTION:
->Git push kept pushing .env folder with credentials to Github
+OBSTACLE DESCRIPTION:
+>Git push kept pushing .env file with credentials to Github
 
 IN-DEPTH ANALYSIS:
->Git command "git add ." tracks all changes even those that fall within the .gitignore file.
+>Git command "git add ." re-adds files to Git's index even if they are listed in .gitignore, specifically when those files were previously tracked by Git. Once a file has been committed even once, "git add ." will pick that file up even if they are within the .gitignore list.
 
 SOLUTION:
->Initially I thought the issue was due to Git logging past changes and the .env file being present would stay until the .gitignore was updated. Doing a quick google search showed that the command "git add ." tracks all changes even the ones that fall within the .gitignore file. The solution was the stop using "git add ." and only use git add for new files that are created that git has yet to begin tracking. As of right now, the best command to use is "git commit -am "message"" as this will track changes and commit prior to pushing to github.
+>Initially I thought the issue was due to Git logging past changes and the .env file being present would stay until the .gitignore was updated. Doing a quick google search showed that the command "git add ." tracks all changes even the ones that fall within the .gitignore file. The solution was the stop using "git add ." and only use git add for new files that are created that git has yet to begin tracking. As of right now, the best command to use is "git commit -am "message"" as this will track changes and commit prior to pushing to github. For future reference, I should focus on the .gitignore list first to ensure that necessarry files dont get tracked and committed due to a previous indexing.
