@@ -1,0 +1,23 @@
+#A custom Dockerfile is only required when you need to build something that does not exist as a pre-built image
+
+#FROM COMMAND format: "FROM <system:systemversion>" (lowercase)
+FROM python:3.11
+
+#WORKDIR COMMAND sets the working directory within the container. Normal practice would be to create a clean folder "/app" 
+WORKDIR /app
+
+#COPY COMMAND needs the requirements.txt file that lists Python dependencies and the working directory. 
+#Format: "COPY <requirements.txt><directory destination path>" (. means current directory)
+#Note: initial requirements.txt files should be at the root directory.
+COPY requirements.txt .
+
+#RUN COMMAND executes terminal command, in this case it will install python libraries from the requirements file.
+#Format: "RUN <terminal command> -r requirements.txt" (-r means 'read from this file')
+RUN pip install -r requirements.txt
+
+#Second COPY COMMAND that copies the script created. 
+COPY bronze_layer_ingestion.py .
+
+#CMD COMMAND dictates what runs when the container starts up.
+#Format: "CMD ["<arg_1>","<arg_2>",etc]"
+CMD ["python", "./bronze_layer_ingestion.py"]

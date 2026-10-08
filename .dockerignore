@@ -1,0 +1,8 @@
+.env
+.git
+__pycache__
+*.pyc
+datasets/
+documents/
+tests/
+migrations/

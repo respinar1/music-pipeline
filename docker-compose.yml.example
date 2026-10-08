@@ -1,0 +1,42 @@
+#Format for yml file is
+
+#services:
+# <service_name>:
+#   <image or build keys>:
+#   <env_file key>:
+#   <ports key>:
+#   <volumes key>:
+
+
+#Note any key that can accept multiple values are proceeded with "-". example: env_file: - .env
+
+services:                                           #Top level key. Everything underneath is a service
+  
+  # --- Service 1: Pre-built Postgres Database ---
+  
+  database:                                         #Name of Service 1, in this case it is just a local database
+    image: postgres:15                              #Image key as Postgres is already pre built within Docker
+    env_file:                                       #Environment key: Points to the .env file.
+      - .env                                          
+    volumes:                                        #Volume key: mounts the storage location outside the container into a path within the container
+      - postgres_data:/var/lib/postgresql/data
+    ports:                                          #Port key: maps a port from host machine to a port within the container format "host_port:container_port"
+      - "5432:5432"
+  
+  # --- Service 2: Python Ingestion ---
+  
+  pipeline:
+    build:                                          #Build key: No python script image since script is custom made
+      context: .                                    #Context key: Docker referencing folder when building container, in this case "." means root directory
+      dockerfile: scripts/Dockerfile                #Dockerfile key: path location within above directory where dockerfile is housed
+    env_file:
+      - .env
+    depends_on:                                     #Depends_on key: applies relational dependency between services (similar to DAG)
+      - database
+
+volumes:                                            #Volume key: this specifically sits outside the service key
+  postgres_data:                                    #all volumes declared within the individual services must also appear here!
+#Docker will indefinitely maintain these volumes active until specifically told to be removed.
+#For future reference: 
+# docker volume rm <volume_name> removes individual volumes
+# docker-compose down -v removes all volumes associated with a Compose environment
