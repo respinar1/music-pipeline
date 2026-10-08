@@ -1,0 +1,4 @@
+#Initial Python libraries required for ingestion process
+spotipy             #Spotify Python Library that handles API calls and authentication
+psycopg2-binary     #Python library that connects to Postgres
+python-dotenv       #Python library that reads .env file and loads credentials into script
