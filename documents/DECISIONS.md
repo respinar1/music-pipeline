@@ -40,3 +40,17 @@ IN-DEPTH ANALYSIS:
 
 SOLUTION:
 >The local repository and the host repository were out of sync, so had to pull the GitHub repo to update the local one prior to pushing.
+
+# Date 19/10/2026
+
+OBSTACLE DESCRIPTION:
+>Passing .env file to bronze_layer_ingestion script
+
+IN-DEPTH ANALYSIS:
+>Three possible options for passing the .env file into the script: using the dotenv library with either load_dotenv() or dotenv_values(), or using the env_file developed within Docker. 
+>1. load_dotenv() would work well as it is the standard in this case. Seeing as I am the owner and I know the values within the file, I can freely load and alter the file as needed. So having it readily available within the system environment would be best for when I create a new script that may need said credentials. However, in a production environment where there are other people involved, load_dotenv() may not be best as others may use said credentials without visibility of usage.
+>2. dotenv_values() would also work well as it give me access to the data within the .env file. However, having to constantly refer to the config variable whenever access is needed may become tedious. In a production environment, using the dotenv_values() function removes the caveat associated with the load_dotenv() function.
+>3. using the docker env_file would also work similar to the load_dotenv() just on the container level, which is good for an organization or team.
+
+SOLUTION:
+>Going with option 1 as Spotifys API, and most APIs, can read System Environments automatically, making the process of accessing the API calls smoother vs pushing the credentials manually.
