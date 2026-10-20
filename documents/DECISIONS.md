@@ -54,3 +54,14 @@ IN-DEPTH ANALYSIS:
 
 SOLUTION:
 >Going with option 1 as Spotifys API, and most APIs, can read System Environments automatically, making the process of accessing the API calls smoother vs pushing the credentials manually.
+
+# Date 20/10/2026
+
+OBSTACLE DESCRIPTION:
+>Docker container not reflecting script changes without rebuilding
+
+IN-DEPTH ANALYSIS:
+>The pipeline container was running the script from /app/bronze_layer_ingestion.py which is the initial Dockerfile copy came from. However, scripts are being saved within the /app/scripts/ directory. The Path mismatch caused docker to not read new changes to the script thus updating the encoder and saving the file with the new utf-8 was not being registered by Docker unless a full rebuild of the image was done. 
+
+SOLUTION:
+>To circumvent this, I decided to mount a volume on the docker-compose.yml that points to app/scripts inside the container and update the Dockerfile's CMD to ./app/scripts/bronze_layer_ingestion.py which aligns paths allowing for seamless update and save from script to docker.

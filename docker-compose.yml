@@ -14,8 +14,8 @@ services:
       dockerfile: scripts/Dockerfile                
     env_file:
       - .env
-    volume:
-    - ./scripts:/app/scripts
+    volumes:
+      - ./scripts:/app/scripts
     depends_on:                                     
       - database
 

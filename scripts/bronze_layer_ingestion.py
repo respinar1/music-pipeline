@@ -6,6 +6,8 @@ from datetime import datetime as dt
 
 load_dotenv()   # reads variables from a .env file and get them with os.getenv()
 
+print("Updated message number 3")
+
 #Connecting to Postgres
 conn = None
 
