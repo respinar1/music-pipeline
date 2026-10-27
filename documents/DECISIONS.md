@@ -76,3 +76,23 @@ IN-DEPTH ANALYSIS:
 
 SOLUTION:
 >Looking over the Spotipy documentation, I noticed a few endpoints that are user based, these are none accessible as I do not have the credentials set up for those. Now that I know which ones not to focus on, I narrowed down the search to 5 endpoints that would be beneficial to my overall goal. Those are; artist_related_artists (this being the most important as it is what ties two artists together that could show the leap between genres and cultures), artist_top_tracks (shows the top 10 tracks by country of an artist), audio_features (tempo of a genre, used to determine the influence of the genre), search (needed to find artists by genre), and artist (for artist details). With these I can move to the next step which is Data Modeling the Bronze Layer tables within Postgres.
+
+# Date 27/10/2026
+
+OBSTACLE DESCRIPTION:
+>Spotipy non-user endpoints not working
+
+IN-DEPTH ANALYSIS:
+>After further investigation, I find out that a bunch of necessary non-user endpoints became unavailable since 2024.
+
+SOLUTION:
+>I have to pivot away from Spotipy and shift to a different API data source. The two available options are: last.fm and musicbrainz based on documented developers shifting away from Spotipy.
+
+OBSTACLE DESCRIPTION:
+>Choosing between last.fm and musicbrainz apis
+
+IN-DEPTH ANALYSIS:
+>Both provide the necessary endpoints needed to develop my pipeline and answer my overarching question. However, it is determining which one would work best for what I have so far.
+
+SOLUTION:
+>I chose musicbrainz because it has more options when it comes to relational assessment between artists, music-genres, and other entities I can test for cross-cultural influences and no authentication needed. Just have to remember to include a sleep window of 1 second between calls or my IP could be blocked if I stress their servers.
