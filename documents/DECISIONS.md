@@ -65,3 +65,14 @@ IN-DEPTH ANALYSIS:
 
 SOLUTION:
 >To circumvent this, I decided to mount a volume on the docker-compose.yml that points to app/scripts inside the container and update the Dockerfile's CMD to ./app/scripts/bronze_layer_ingestion.py which aligns paths allowing for seamless update and save from script to docker.
+
+# Date 22/10/2026
+
+OBSTACLE DESCRIPTION:
+>Determining endpoints to focus on that would help with the analytical question
+
+IN-DEPTH ANALYSIS:
+>The Spotipy API has many endpoints that can be accessed to pull data from. I need to determine which ones are the ones that are accessible with the current credentials and are key to pulling in necessary data associated with solving how music characteristics lead to cross-cultural influences.
+
+SOLUTION:
+>Looking over the Spotipy documentation, I noticed a few endpoints that are user based, these are none accessible as I do not have the credentials set up for those. Now that I know which ones not to focus on, I narrowed down the search to 5 endpoints that would be beneficial to my overall goal. Those are; artist_related_artists (this being the most important as it is what ties two artists together that could show the leap between genres and cultures), artist_top_tracks (shows the top 10 tracks by country of an artist), audio_features (tempo of a genre, used to determine the influence of the genre), search (needed to find artists by genre), and artist (for artist details). With these I can move to the next step which is Data Modeling the Bronze Layer tables within Postgres.
