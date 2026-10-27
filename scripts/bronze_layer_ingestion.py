@@ -1,13 +1,13 @@
 ## -*- coding: utf-8 -*-
-import spotipy
+import requests as rq
 import json
-from spotipy.oauth2 import SpotifyClientCredentials as scc
 from dotenv import load_dotenv
 import psycopg2 as ptgs
 import os
 from datetime import datetime as dt
 
 load_dotenv()                                                                   # reads variables from a .env file and get them with os.getenv()
+musicbrainz_api_url = "https://musicbrainz.org/ws/2/"                           # musicbrainz initial api url before params
 
 #Connection-Check function
 def connection_function(k, e, service):                                                 
@@ -23,18 +23,15 @@ def connection_function(k, e, service):
     
         print(f"{service} failed: {e_type} occurred at {e_time} with message {e_message}")
 
-#Establishing Spotify oauth connection
+#Establishing Musicbrainz connection
 try:                                                                            
-    sp = spotipy.Spotify(auth_manager=scc())
-    connection_function("Connected", None, "spotify")
-
-    #API call
-    #results = sp.search(q='Drake', type='artist', limit=1)
-    results = sp.artist('3TVXtAsR1Inumwj472S9r4')
-    print(json.dumps(results, indent=2))
+    response = rq.get(musicbrainz_api_url)
+    if response.status_code == 200:
+        connection_function("Connected", None, "musicbrainz")
+    else: raise ConnectionError(f"Unexpected status code: {response.status_code}")
 
 except Exception as e:
-    connection_function(None, e, "spotify")
+    connection_function(None, e, "musicbrainz")
     raise
 
 
