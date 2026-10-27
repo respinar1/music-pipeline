@@ -8,6 +8,8 @@ from datetime import datetime as dt
 
 load_dotenv()                                                                   # reads variables from a .env file and get them with os.getenv()
 musicbrainz_api_url = "https://musicbrainz.org/ws/2/"                           # musicbrainz initial api url before params
+user_agent_header = {"user_name": os.getenv("MUSICBRAINZ_USER_NAME"),           # musicbrainz header init
+                     "user_email": os.getenv("MUSICBRAINZ_USER_CONTACT_EMAIL")}
 
 #Connection-Check function
 def connection_function(k, e, service):                                                 
@@ -25,7 +27,7 @@ def connection_function(k, e, service):
 
 #Establishing Musicbrainz connection
 try:                                                                            
-    response = rq.get(musicbrainz_api_url)
+    response = rq.get(musicbrainz_api_url, headers=user_agent_header)
     if response.status_code == 200:
         connection_function("Connected", None, "musicbrainz")
     else: raise ConnectionError(f"Unexpected status code: {response.status_code}")
