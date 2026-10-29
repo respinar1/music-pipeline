@@ -6,10 +6,11 @@ import psycopg2 as ptgs
 import os
 from datetime import datetime as dt
 
-load_dotenv()                                                                   # reads variables from a .env file and get them with os.getenv()
-musicbrainz_api_url = "https://musicbrainz.org/ws/2/"                           # musicbrainz initial api url before params
-user_agent_header = {"user_name": os.getenv("MUSICBRAINZ_USER_NAME"),           # musicbrainz header init
-                     "user_email": os.getenv("MUSICBRAINZ_USER_CONTACT_EMAIL")}
+load_dotenv()                                                                               # reads variables from a .env file and get them with os.getenv()
+musicbrainz_api_url = "https://musicbrainz.org/ws/2/"                                       # musicbrainz initial api url before params
+MUSICBRAINZ_CONTACT_EMAIL = os.getenv("MUSICBRAINZ_CONTACT_EMAIL")                          # musicbrainz needed .env credential
+user_agent_header = {"User-Agent": 
+                    f"music-pipeline/0.1 ({MUSICBRAINZ_CONTACT_EMAIL})"}
 
 #Connection-Check function
 def connection_function(k, e, service):                                                 
