@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 import psycopg2 as ptgs
 import os
+import time
 from datetime import datetime as dt
 
 load_dotenv()                                                                               # reads variables from a .env file and get them with os.getenv()
@@ -60,3 +61,13 @@ finally:
     if conn is not None:
         conn.close()
 
+#Calling Musicbrainz API
+time.sleep(1)
+query = "country:KR"
+mbz_artist_api_url = musicbrainz_api_url + f"artist/?query={query}"
+
+response = rq.get(mbz_artist_api_url
+                  , params={"fmt": "json", "limit":1}
+                  , headers=user_agent_header)
+
+print(json.dumps(response.json(), indent=2))

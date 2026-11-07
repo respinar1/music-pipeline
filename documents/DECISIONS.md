@@ -96,3 +96,14 @@ IN-DEPTH ANALYSIS:
 
 SOLUTION:
 >I chose musicbrainz because it has more options when it comes to relational assessment between artists, music-genres, and other entities I can test for cross-cultural influences and no authentication needed. Just have to remember to include a sleep window of 1 second between calls or my IP could be blocked if I stress their servers.
+
+# Date 07/11/2026
+
+OBSTACLE DESCRIPTION:
+>Project scope too large
+
+IN-DEPTH ANALYSIS:
+>After reviewing the MusicBrainz entity data for their SEARCH GET type, I noticed that the scope of trying to compare cross cultural influence between ALL music genres may be outside my means. Using the first search of "all US based artist" being shy of 230K records, as of today, resulting in a potential pull duration of about 38 minutes excluding other compute time implications, I made the assumption that including ALL other countries would result in a lengthy ingestion time. 
+
+SOLUTION:
+>The solution I came up with is to limit the scope to focus on the cross cultural influence between American, Korean, and Japanese artists. The US result count was 230K, Korean result was 16.5K, and Japan result was 114.9K, totaling 361.5K records or roughly 61 minutes of sleep time between calls. This is manageable with proper scheduling and backfilling. However, the pipeline will be built to handle any country inputs so that the scope of the pipeline isn't limited to just these three countries.
