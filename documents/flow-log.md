@@ -1,5 +1,5 @@
 > # **Flow Log Document**
-> # **Intention:**
+> ## **Intention:**
 > This document will be used to track my "flow state" framework for each goal as I complete this project. Will help getting back on track if I take hiatus.
 
 > ## **Framework:**
