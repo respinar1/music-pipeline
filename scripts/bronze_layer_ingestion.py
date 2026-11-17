@@ -27,6 +27,19 @@ def connection_function(k, e, service):
     
         print(f"{service} failed: {e_type} occurred at {e_time} with message {e_message}")
 
+#Query Function
+def Query(x):
+    for countries in x:
+        #Calling Musicbrainz API
+        time.sleep(1)
+        query = f"country:{countries}"
+        mbz_artist_api_url = musicbrainz_api_url + f"artist/?query={query}"
+        
+        response = rq.get(mbz_artist_api_url
+                          , params={"fmt": "json", "limit":1}
+                          , headers=user_agent_header)
+        print(json.dumps(response.json(), indent=2))
+
 #Establishing Musicbrainz connection
 try:                                                                            
     response = rq.get(musicbrainz_api_url, headers=user_agent_header)
@@ -61,13 +74,5 @@ finally:
     if conn is not None:
         conn.close()
 
-#Calling Musicbrainz API
-time.sleep(1)
-query = "country:KR"
-mbz_artist_api_url = musicbrainz_api_url + f"artist/?query={query}"
-
-response = rq.get(mbz_artist_api_url
-                  , params={"fmt": "json", "limit":1}
-                  , headers=user_agent_header)
-
-print(json.dumps(response.json(), indent=2))
+country_list = ['US']
+Query(country_list)
