@@ -37,7 +37,7 @@ Everything below will be new and used to reflect growth of project
 > ## Start Date 17/11/2026
 > - **Goal:** Pull 100 US artists from MusicBrainz API and store them in a Postgres Table.
 >   - *Done when: "SELECT COUNT()" returns 100, and rerun returns the same count.*
-> - **Reasoning:** The importance of this 
+> - **Reasoning:** Completing this goal establishes: successful limited data ingestion, tables in Postgres, and understanding of idempotency.
 > - **Study Needed:**
 >   - Skim MusicBrainz API doc again for pagination for limited search goal.
 >   - Study up on psycopg2 library documentation.
