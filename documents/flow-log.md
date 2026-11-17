@@ -36,7 +36,7 @@ Everything below will be new and used to reflect growth of project
 
 > ## Start Date 17/11/2026
 > - **Goal:** Pull 100 US artists from MusicBrainz API and store them in a Postgres Table.
->   - *Done when: I can run "SELECT COUNT()" and the COUNT returns 100, and if I rerun the script, the same COUNT returns 100.*
+>   - *Done when: "SELECT COUNT()" returns 100, and rerun returns the same count.*
 > - **Reasoning:** The importance of this 
 > - **Study Needed:**
 >   - Skim MusicBrainz API doc again for pagination for limited search goal.
