@@ -1,8 +1,8 @@
-> ## **Flow Log Document**
+> # **Flow Log Document**
 > # **Intention:**
 > This document will be used to track my "flow state" framework for each goal as I complete this project. Will help getting back on track if I take hiatus.
 
-> # **Framework:**
+> ## **Framework:**
 > - **Goal:**
 >   - Goal set and completion testing.
 > - **Reasoning:**
@@ -14,7 +14,7 @@
 
 ---
 
-# Background:
+## Background:
 So far:
 - Work environment from scratch:
     - IDE (VSCODE), 
@@ -34,7 +34,7 @@ Everything below will be new and used to reflect growth of project
 
 ---
 
-> # Start Date 17/11/2026
+> ## Start Date 17/11/2026
 > - **Goal:** Pull 100 US artists from MusicBrainz API and store them in a Postgres Table.
 >   - *Done when: I can run "SELECT COUNT()" and the COUNT returns 100, and if I rerun the script, the same COUNT returns 100.*
 > - **Reasoning:** The importance of this 
